@@ -1,5 +1,6 @@
 import random
 from .unit import Unit
+from .item import Item
 
 
 class Player(Unit):
@@ -7,16 +8,30 @@ class Player(Unit):
         super().__init__(name, 100, 10)
         self.level = 1
 
-        self.defense = 10
+        self.__defense = 10
 
-        self.weapon = None
-        self.armor = None
+        self.__weapon: Item | None = None
+        self.__armor: Item | None = None
 
     def attack(self, target: Unit):
         damage = self.strength
-        if self.weapon:
-            damage += self.weapon.strength
+        if self.__weapon:
+            damage += self.__weapon.value
         target.hp -= random.randint(damage - 2, damage + 2)
 
     def heal(self):
-        pass
+        self.hp += random.randint(self.level + 10, self.level + 15)
+
+    def change_armor(self, armor: Item):
+        if isinstance(armor, Item):
+            self.__armor = armor
+
+    def change_weapon(self, weapon: Item):
+        if isinstance(weapon, Item):
+            self.__weapon = weapon
+
+    def defense(self):
+        if isinstance(self.__armor, Item):
+            return self.__defense + self.__armor.value
+        else:
+            return self.__defense

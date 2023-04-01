@@ -8,7 +8,7 @@ class Enemy(Unit):
         super().__init__(name, hp, strength)
 
     def attack(self, target: Player):
-        damage = target.defense - random.randint(self.strength - 2, self.strength + 2)
+        damage = target.defense() - random.randint(self.strength - 2, self.strength + 2)
         if damage < 0:
             damage = 0
         print(f"Enemy damage {damage}")
