@@ -21,9 +21,24 @@ enemy_names = [
 ]
  
 # Имена оружия и брони
-weapon_names = []
+weapon_names = [
+    "Нагибатор",
+    "Палка",
+    "Лук",
+    "Камень",
+    "Рапира",
+    "Кинжал",
+
+]
  
-armor_names = []
+armor_names = [
+    "Рубашка",
+    "Мантия",
+    "Доспехи",
+    "Щит",
+
+
+]
  
  
 class Game:
@@ -37,8 +52,8 @@ class Game:
     def show_actions(self):
         print("Actions: ")
         # Написать действия
-        print("1. ")
-        print("2. ")
+        print("1. Бить")
+        print("2. Исцелиться")
  
     def equip_actions(self):
         print("Equip: ")
@@ -56,12 +71,14 @@ class Game:
             if choice == "1":
                 self.player.attack(self.enemy)
             if choice == "2":
+                self.player.heal()
                 # player исцеляется
                 pass
  
             self.enemy.attack(self.player)
  
             if self.enemy.hp <= 0:
+                self.player.level += 1 
                 self.enemy_hp += 10
                 self.enemy_atk += 2
                 self.enemy = Enemy(
@@ -83,3 +100,17 @@ class Game:
                     if choice == "1":
                         self.player.change_weapon(weapon)
                     # Делаем все тоже самое для брони
+                chance = random.randint(1, 100)
+                if chance <= 25:
+                    # Персонаж может их одеть или выбросить
+                    value = self.player.level + 5
+                    armor = Item(
+                        random.choice(armor_names),
+                        random.randint(value - 3, value + 3),
+                    )
+                    print(f"Armor Name: {armor.name}")
+                    print(f"Armor defense: {armor.value}")
+                    self.equip_actions()
+                    choice = input("-> ")
+                    if choice == "1":
+                        self.player.change_armor(armor)
