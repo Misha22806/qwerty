@@ -11,5 +11,4 @@ class Enemy(Unit):
         damage = target.defense() - random.randint(self.strength - 2, self.strength + 2)
         if damage < 0:
             damage = 0
-        print(f"Enemy damage {damage}")
         target.hp -= damage

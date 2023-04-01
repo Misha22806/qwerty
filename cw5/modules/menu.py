@@ -1,4 +1,3 @@
-from .colors import *
 from .game import Game
 
 
@@ -7,7 +6,7 @@ class Menu:
         self.game = game
 
     def start(self):
-        print(f"{BOLD}{PINK}Welcome to the {YELLOW}Burger-punk Adventure{RESET}")
+        print("Welcome to the Burger-punk Adventure")
         self.game.start()
 
     def exit(self):
