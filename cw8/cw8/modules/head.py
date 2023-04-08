@@ -28,8 +28,17 @@ class Head:
             if self.y < 0:
                 self.y = self.fieldSize - 1
         elif self.direction == "down":
-            pass
+            self.y += 1
+            if self.y > self.fieldSize:
+                self.y = self.fieldSize + 1
+            
         elif self.direction == "left":
-            pass
+            self.x -= 1
+            if self.x < 0:
+                self.x = self.fieldSize - 1
+            
         elif self.direction == "right":
-            pass
+            self.x += 1
+            if self.x > self.fieldSize:
+                self.x = self.fieldSize - 1
+            
