@@ -47,6 +47,9 @@ while True:
     # Делаете проверку на победу
     # Если длина(len) tail.elements будет равна size * size - 1
     # Пишем победа и exit()
+    if len(tail.elements) == size * size - 1:
+        print("Победа!")
+        exit()
 
     renderedField = field.render(head, tail, fruit)
 
